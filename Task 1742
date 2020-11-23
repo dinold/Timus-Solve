@@ -1,0 +1,172 @@
+using System;
+
+using System.Collections.Generic;
+
+
+class Programm
+
+{
+
+    static int N = 101010;
+    
+     static int n, lst, comp, min, h, t;
+
+     static int[]
+  p = new int[N],
+     	ls = new int[N],
+     	u = new int[N],
+     	P = new int[N],
+     	U = new int[N],
+     	q = new int[N];
+
+
+     static List<int>[] g =
+ new List<int>[N];
+
+
+     static void dfs(int v){
+
+        t = 0;
+
+        q[t++] = v;
+
+        while (t > 0)
+        {
+ 
+	v = q[t - 1];
+
+        u[v] = 1;
+
+            if (u[p[v]] == 0)
+
+                q[t++] = p[v];
+
+            else
+            {
+
+                ls[lst++] = v;
+
+                t--;
+
+            }
+
+        }
+
+    }
+
+
+    static void col(int v)
+    {
+
+        h = t = 0;
+
+        q[t++] = v;
+
+        while (h < t)
+        {
+
+            v = q[h++];
+
+            u[v] = comp;
+
+            for (int i = 0; i < g[v].Count; i++)
+            {
+
+                int to = g[v][i];
+
+                if (u[to] == 0)
+                {
+
+                    u[to] = comp;
+
+                    q[t++] = to;
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    public static void Main()
+    {
+
+        for (int i = 0; i < g.Length; ++i)
+
+            g[i] = new List<int>();
+
+        n = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= n; i++)
+        {
+
+            p[i] = int.Parse(Console.ReadLine());
+
+            g[p[i]].Add(i);
+
+        }
+
+
+        for (int i = 1; i <= n; i++)
+
+            if (u[i] == 0)
+
+                dfs(i);
+
+        for (int i = 0; i < u.Length; ++i)
+
+            u[i] = 0;
+
+
+        for (int i = lst - 1; i >= 0; i--)
+
+            if (u[ls[i]] == 0)
+            {
+ 
+               comp++;
+
+               col(ls[i]);
+
+            }
+
+
+        for (int i = 1; i <= n; i++)
+
+            if (u[i] != u[p[i]])
+            {
+
+                P[u[i]] = u[p[i]];
+
+                U[u[p[i]]] = 2;
+
+            }
+
+        for (int i = 1; i <= comp; i++)
+
+            if (U[i] == 0)
+            {
+
+                int v = i;
+
+                min++;
+
+                U[v] = 2;
+
+                while (U[v] == 2)
+                {
+
+                    U[v] = 1;
+
+                    v = P[v];
+
+                }
+
+            }
+
+
+        Console.WriteLine(String.Format("{0} {1}", min, comp));
+
+    }
+}
