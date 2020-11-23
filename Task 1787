@@ -1,0 +1,37 @@
+using System;
+
+namespace ConsoleApplication17
+{
+    class Program
+    {
+        static void Main()
+        {
+            string s =Console.ReadLine();
+            string[] ss = s.Split(' ');
+            int k = int.Parse(ss[0]);
+            int n = int.Parse(ss[1]);
+
+            string z = Console.ReadLine();
+            string[] zz = z.Split(' ');
+            if(zz.Length != n)
+            {
+                Console.WriteLine("Error");
+            }
+            else
+            {
+                int l=0;
+                foreach (string m in zz)
+                {
+                    l += int.Parse(m);
+                    l = (l > k) ? l - k : 0;
+
+                }
+                Console.WriteLine(l);
+                Console.ReadLine();
+            }
+
+
+
+        }
+    }
+}
