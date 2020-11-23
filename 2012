@@ -1,0 +1,21 @@
+using System;
+
+namespace ConsoleApplication8
+{
+    class Program
+    {
+        static void Main()
+        {
+            string s = Console.ReadLine();
+            string[] ss = s.Split(' ');
+            int f = int.Parse(ss[0]);
+            int m = 12 - f;
+            int hour = m * 45;
+            if (hour < 240)
+                System.Console.WriteLine("YES");
+            else
+                System.Console.WriteLine("NO");
+            System.Console.ReadLine();
+        }
+    }
+}
