@@ -1,0 +1,35 @@
+using System;
+
+namespace ConsoleApplication10
+{
+    class Program
+    {
+        static void Main()
+        {
+            string s = Console.ReadLine();
+            string[] ss = s.Split(' ');
+            int n = int.Parse(ss[0]);
+            int k = int.Parse(ss[1]);
+            if (n < k)
+                Console.WriteLine("2");
+            else
+            {
+                int N;
+                N = 2 * n;
+                if (N % k == 0)
+                {
+                    int r = N / k;
+                    Console.WriteLine(r);
+                }
+                else
+                {
+                    int r = N / k;
+                    int t = r + 1;
+                    Console.WriteLine(t);
+                }
+            }
+            Console.ReadLine();
+
+        }
+    }
+}
